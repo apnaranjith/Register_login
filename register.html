@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+      <fieldset>
+    <legend align="center">Register</legend>
+    <label for="id1">Username:</label><br>
+
+    <input type="text" id="id1" ><br>
+    <label for="id2">Password:</label><br>
+    <input type="text" id="id2" ><br>
+    <label for="id3">Confirm-Password:</label><br>
+    <input type="text" id="id3" ><br>
+    <label for="id4">Mobile Number</label><br>
+    <input type="tel" id="id4" ><br><br>
+    <button >Register</button>
+</fieldset>
+</form>
+<script>
+     var arr=[];
+    var reg=document.getElementsByTagName("button");
+    reg[0].addEventListener("click",function (e){
+        e.preventDefault();
+        var username=document.getElementById("id1").value;
+        var password=document.getElementById("id2").value;
+        var Confirm1=document.getElementById("id3").value;
+        var mobile=document.getElementById("id4").value;
+        if(mobile.length!=10){
+            alert("please enter valid mobile number");
+
+        }
+        else{
+            if(password!=Confirm1){
+                 alert("Password and Confirm password are different");
+            }
+            else if(username==""||password==""){
+                alert("please Enter valid details of Useranme and password");
+            
+            }
+            else{
+                  var obj={
+                    user:username,
+                    pass:password
+                  }
+                if(arr.length==0){
+                    arr.push(obj);
+                    window.localStorage.setItem("register",JSON.stringify(arr));
+                    if(confirm("Register successful!! Do you want to enter login page?")){
+                    window.open("login.html");
+                }
+                }
+                else{
+                    c=0;
+                    for(i=0;i<arr.length;i++){
+                        if(obj["user"]==arr[i]["user"]){
+                            alert("username already Exists..Please enter the new one");
+                            c++;
+                            break;
+                        }
+                        
+                    }
+                    if(c==0){
+                        
+                        arr.push(obj);
+                        window.localStorage.setItem("register",JSON.stringify(arr))
+                        if(confirm("Register successful!! Do you want to enter login page?"))
+                        {
+                    window.open("login.html");
+                        }
+                    }
+                    
+
+
+                 
+                }
+              
+               
+            }
+            if(arr.length>0){
+            console.log(arr);
+            }
+
+        }
+    
+        })
+</script>
+
+</body>
+</html>

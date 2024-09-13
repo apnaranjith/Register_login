@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <fieldset>
+      <legend align="center">LOGIN</legend>
+      <label for="id1">Username:</label><br>
+  
+      <input type="text" id="id1" ><br>
+      <label for="id2">Password:</label><br>
+      <input type="text" id="id2" ><br>
+      <button >Login</button>
+    </fieldset>
+    </form>
+    <script>
+    var lgn=document.getElementsByTagName("button");
+    lgn[0].addEventListener("click",function (e){
+        e.preventDefault();
+        var username=document.getElementById("id1").value;
+        var password=document.getElementById("id2").value;
+        var aldata=JSON.parse(localStorage.getItem("register"));
+        console.log(aldata);
+        var arr=[];
+        for(i=0;i<aldata.length;i++){
+            if(aldata[i]["user"]==username&&aldata[i]["pass"]==password){
+                arr.push(aldata[i]);
+
+
+            }
+        }
+        console.log(arr);
+        if(arr.length>0){
+            if(username==arr[0]["user"]&&password==arr[0]["pass"]){
+                alert("login successful");
+
+            }
+            else{
+                alert("login unsuccessful!!Please enter valid credentials");
+            }
+        }
+        else{
+            alert("please register before login!!!");
+        }
+
+    })
+    </script>
+</body>
+</html>
