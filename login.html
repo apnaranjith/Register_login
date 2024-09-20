@@ -24,9 +24,15 @@
         var username=document.getElementById("id1").value;
         var password=document.getElementById("id2").value;
         var aldata=JSON.parse(localStorage.getItem("register"));
+        if(aldata==null){
+            alert("register before you login:");
+        }
         console.log(aldata);
         var arr=[];
+        if(aldata!=null)
+        {
         for(i=0;i<aldata.length;i++){
+
             if(aldata[i]["user"]==username&&aldata[i]["pass"]==password){
                 arr.push(aldata[i]);
 
@@ -46,6 +52,7 @@
         else{
             alert("please register before login!!!");
         }
+    }
 
     })
     </script>
